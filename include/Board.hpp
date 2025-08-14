@@ -31,27 +31,29 @@ class Position {
   static constexpr uint8_t BK = 1 << 2;
   static constexpr uint8_t BQ = 1 << 3;
 
-  static constexpr size_t NumTypes = static_cast<size_t>(PieceType::NO_PIECE_TYPE);
-  static constexpr size_t NumColors = static_cast<size_t>(Color::NO_COLOR);
+  static constexpr size_t NumPieces = static_cast<size_t>(PieceType::NO_PIECE_TYPE) - 1;
+  static constexpr size_t NumColors = static_cast<size_t>(Color::NO_COLOR) - 1;
 
-  Array2d<uint64_t, NumColors, NumTypes> bitboards_;
+  Array2d<uint64_t, NumColors, NumPieces> board_;
   Color sideToMove_;
   uint8_t castlingRights_;
-  int enPassantSquare_;
-  int halfmoveClock_;  // for 50-move draw rule
+  uint8_t halfmoveClock_;     // for 50-move draw rule
+  uint64_t enPassantSquare_;  // square which a pawn will move to after en passant
 
  public:
   Position(
-      Array2d<uint64_t, NumColors, NumTypes> bitboards,
+      Array2d<uint64_t, NumColors, NumPieces> board,
       Color sideToMove,
       uint8_t castlingRights,
       int enPassantSquare,
       int halfmoveClock)
-      : bitboards_(bitboards),
+      : board_(board),
         sideToMove_(sideToMove),
         castlingRights_(castlingRights),
         enPassantSquare_(enPassantSquare),
         halfmoveClock_(halfmoveClock) {}
+  bool isFriendlyPiece(uint64_t squareToCheck);
+  bool isEnemyPiece(uint64_t squareToCheck);
 };
 
 }  // namespace chess
