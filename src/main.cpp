@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../include/Board.hpp"
+#include "../include/Position.hpp"
 
 int main() {
   std::cout << "test\n";

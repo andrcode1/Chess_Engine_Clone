@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(chess_engine_clone VERSION 1.0)
 
 add_library(board
-    src/Board.cpp
+    src/Position.cpp
     include/Position.hpp
 )
 
