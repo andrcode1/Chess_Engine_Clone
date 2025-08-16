@@ -2,17 +2,18 @@
 
 namespace chess {
 
-bool Position::isFriendlyPiece(uint64_t squareToCheck) {
-  for (const auto& piece : board_[static_cast<size_t>(sideToMove_)]) {
+Color Position::getPieceColor(uint64_t squareToCheck) {
+  for (const auto& piece : board_[static_cast<size_t>(static_cast<size_t>(Color::WHITE))]) {
     if (piece & squareToCheck) {
-      return true;
+      return Color::WHITE;
     }
   }
-  return false;
-}
-
-bool Position::isEnemyPiece(uint64_t squareToCheck) {
-  return !isFriendlyPiece(squareToCheck);
+  for (const auto& piece : board_[static_cast<size_t>(static_cast<size_t>(Color::BLACK))]) {
+    if (piece & squareToCheck) {
+      return Color::BLACK;
+    }
+  }
+  return Color::NO_COLOR;
 }
 
 };  // namespace chess

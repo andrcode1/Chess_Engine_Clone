@@ -52,8 +52,7 @@ class Position {
         castlingRights_(castlingRights),
         enPassantSquare_(enPassantSquare),
         halfmoveClock_(halfmoveClock) {}
-  bool isFriendlyPiece(uint64_t squareToCheck);
-  bool isEnemyPiece(uint64_t squareToCheck);
+  Color getPieceColor(uint64_t square);
 };
 
 }  // namespace chess
