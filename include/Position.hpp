@@ -23,6 +23,12 @@ enum class Color {
   NO_COLOR
 };
 
+struct Move {
+  PieceType movedPiece;
+  uint64_t squareFrom;
+  uint64_t squareTo;
+};
+
 class Position {
  private:
   // Castling rights
@@ -52,7 +58,10 @@ class Position {
         castlingRights_(castlingRights),
         halfmoveClock_(halfmoveClock),
         enPassantSquare_(enPassantSquare) {}
-  Color getPieceColor(uint64_t square);
+  Color getPieceColorAt(uint64_t square);
+  uint64_t getAllWhitePieces();
+  uint64_t getAllBlackPieces();
+  uint64_t getOccupancy();
 };
 
 }  // namespace chess
