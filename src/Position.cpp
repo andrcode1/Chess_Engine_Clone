@@ -3,13 +3,14 @@
 namespace chess {
 
 Color Position::getPieceColorAt(uint64_t squareToCheck) {
+  uint64_t mask = 1ULL << squareToCheck;
   for (const auto& piece : board_[static_cast<size_t>(Color::WHITE)]) {
-    if (piece & squareToCheck) {
+    if (piece & mask) {
       return Color::WHITE;
     }
   }
   for (const auto& piece : board_[static_cast<size_t>(Color::BLACK)]) {
-    if (piece & squareToCheck) {
+    if (piece & mask) {
       return Color::BLACK;
     }
   }
